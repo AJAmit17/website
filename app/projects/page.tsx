@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import chunk from "lodash/chunk";
 import data from "../../data.json";
@@ -9,6 +8,7 @@ import { MarkGithubIcon } from "@primer/octicons-react";
 import { Article } from "@/components/article";
 import { ActivityList } from "@/components/activityList";
 import { fetchGitHubActivity } from "@/lib/github";
+import { Separator } from "@/components/ui/separator";
 
 export default async function ProjectsPage() {
     const username = process.env.GITHUB_USERNAME!;
@@ -40,9 +40,9 @@ export default async function ProjectsPage() {
     return (
         <div className="relative pb-16 bg-background text-foreground">
             <Navigation />
-            <div className="px-6 pt-16 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-12 md:pt-24 lg:pt-32">
+            <div className="px-4 pt-16 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-12 md:pt-24 lg:pt-32">
                 <div className="max-w-2xl mx-auto lg:mx-0">
-                    <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                    <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mt-8 sm:mt-12">
                         Projects
                     </h2>
                     <p className="mt-4 text-gray-400">
@@ -52,7 +52,7 @@ export default async function ProjectsPage() {
 
                 {heroes.length ? (
                     <>
-                        <div className="w-full h-px bg-muted" />
+                        <Separator className="my-8 bg-white opacity-50" />
                         <h3 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
                             Pinned Projects
                         </h3>
@@ -80,9 +80,10 @@ export default async function ProjectsPage() {
                                 </div>
                             )}
                         </div>
-                        <div className="hidden w-full h-px md:block bg-muted" />
+                        <Separator className="my-8 bg-white opacity-50" />
                     </>
                 ) : null}
+
                 <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
                     <div className="grid grid-cols-1 gap-4">
                         {chunk(sorted, chunkSize)[0]?.map((project: any) => (
@@ -107,7 +108,7 @@ export default async function ProjectsPage() {
                     </div>
                 </div>
 
-                <div className="w-full h-px bg-muted" />
+                <Separator className="my-8 bg-white opacity-50" />
 
                 <div className="max-w-2xl mx-auto lg:mx-0">
                     <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">

@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import LocalFont from "next/font/local";
 import data from "../data.json";
 import React, { ReactNode } from "react";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import BottomDock from "@/components/FinalDock";
 
 const username = process.env.GITHUB_USERNAME || data.githubUsername;
 const displayName = username;
@@ -33,6 +35,7 @@ export const metadata = {
     },
   ]
 };
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -51,9 +54,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
       <body
-        className={`bg-black`}
+        className={`bg-black min-h-screen relative`} // Added padding-bottom to ensure content does not overlap with BottomDock
       >
-        {children}
+        <TooltipProvider delayDuration={0}>
+          {children}
+          <BottomDock />
+        </TooltipProvider>
       </body>
     </html>
   );
