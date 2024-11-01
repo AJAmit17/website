@@ -1,8 +1,49 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
+import { Metadata } from "next";
 import { RecentActivity } from "@/components/recentActivity";
 import { getUser } from "@/lib/data";
+
+// Define metadata for the page
+export const metadata: Metadata = {
+    title: "Amit Acharya - Personal Portfolio",
+    description: "Professional portfolio of Amit Acharya, featuring projects and contact information. Explore my work and get in touch.",
+    keywords: ["Amit Acharya", "Portfolio", "Developer", "Projects","AJ Amit", "AJAmit17"],
+    authors: [{ name: "Amit Acharya" }],
+    openGraph: {
+        title: "Amit Acharya - Personal Portfolio",
+        description: "Professional portfolio of Amit Acharya, featuring projects and contact information.",
+        type: "website",
+        url: "https://amit-acharya.live",
+        images: [{
+            url: "https://avatars.githubusercontent.com/u/100467234?v=4",
+            width: 800,
+            height: 600,
+            alt: "Amit Acharya"
+        }],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Amit Acharya - Personal Portfolio",
+        description: "Professional portfolio of Amit Acharya, featuring projects and contact information.",
+        images: ["https://avatars.githubusercontent.com/u/100467234?v=4"],
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-video-preview': -1,
+            'max-image-preview': 'large',
+            'max-snippet': -1,
+        },
+    },
+    verification: {
+        google: "your-google-verification-code",
+    },
+};
 
 const navigation = [
     { name: "Projects", href: "/projects" },
@@ -17,7 +58,15 @@ export default function Home() {
 
 const UserIcon = () => {
     return (
-        <Image alt='👨‍💻' width={100} height={100} src={"https://avatars.githubusercontent.com/u/100467234?v=4&size=64"} className="float-right rounded-full mx-4" />
+        <Image 
+            alt='Amit Acharya Profile Picture' 
+            width={100} 
+            height={100} 
+            src={"https://avatars.githubusercontent.com/u/100467234?v=4&size=64"} 
+            className="float-right rounded-full mx-4"
+            priority
+            loading="eager"
+        />
     );
 };
 
@@ -30,14 +79,15 @@ const UserText = async () => {
 
 const LandingComponent = () => {
     return (
-        <div className="relative flex flex-col items-center justify-center w-screen h-screen overflow-hidden bg-gradient-to-tl from-black via-zinc-600/20 to-black min-h-[100dvh] space-y-10">
-            <nav className="my-16 animate-fade-in">
+        <main className="relative flex flex-col items-center justify-center w-screen h-screen overflow-hidden bg-gradient-to-tl from-black via-zinc-600/20 to-black min-h-[100dvh]" role="main" aria-label="Portfolio Landing Page">
+            <nav className="mb-16 animate-fade-in" role="navigation" aria-label="Main navigation">
                 <ul className="flex items-center justify-center gap-4">
                     {navigation.map((item) => (
                         <Link
                             key={item.href}
-                            href={item.href + ('')}
+                            href={item.href}
                             className="text-lg duration-500 text-zinc-500 hover:text-zinc-300"
+                            aria-label={`Navigate to ${item.name}`}
                         >
                             {item.name}
                         </Link>
@@ -58,6 +108,6 @@ const LandingComponent = () => {
                     <RecentActivity />
                 </h2>
             </div>
-        </div>
+        </main>
     );
 }

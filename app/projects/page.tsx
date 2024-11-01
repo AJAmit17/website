@@ -10,6 +10,21 @@ import { ActivityList } from "@/components/activityList";
 import { fetchGitHubActivity } from "@/lib/github";
 import { Separator } from "@/components/ui/separator";
 
+export async function generateMetadata() {
+    const username = process.env.GITHUB_USERNAME!;
+    const repositories = await getRepos(username);
+
+    return {
+        title: `${username} - Portfolio Project`,
+        description: `A detailed look at the ${username}'s projects with ${repositories.length} repositories`,
+        openGraph: {
+            title: username,
+            description: `A detailed look at the ${username}'s projects with ${repositories.length} repositories`,
+            type: 'article',
+        },
+    };
+}
+
 export default async function ProjectsPage() {
     const username = process.env.GITHUB_USERNAME!;
 
@@ -40,7 +55,7 @@ export default async function ProjectsPage() {
     return (
         <div className="relative pb-16 bg-background text-foreground">
             <Navigation />
-            <div className="px-4 pt-16 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-12 md:pt-24 lg:pt-32">
+            <div className="px-4 pt-16 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-12 md:pt-24 lg:pt-16">
                 <div className="max-w-2xl mx-auto lg:mx-0">
                     <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mt-8 sm:mt-12">
                         Projects
