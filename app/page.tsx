@@ -9,7 +9,7 @@ import { getUser } from "@/lib/data";
 export const metadata: Metadata = {
     title: "Amit Acharya - Personal Portfolio",
     description: "Professional portfolio of Amit Acharya, featuring projects and contact information. Explore my work and get in touch.",
-    keywords: ["Amit Acharya", "Portfolio", "Developer", "Projects","AJ Amit", "AJAmit17"],
+    keywords: ["Amit Acharya", "Portfolio", "Developer", "Projects","AJ Amit", "AJAmit17","Amit Jagadeesh Acharya","Amit Achari","Amit Jagadeesh Achari","Achari"],
     authors: [{ name: "Amit Acharya" }],
     openGraph: {
         title: "Amit Acharya - Personal Portfolio",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
         },
     },
     verification: {
-        google: "your-google-verification-code",
+        google: "",
     },
 };
 
