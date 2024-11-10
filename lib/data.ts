@@ -83,18 +83,18 @@ interface RouterCheck {
 
 export async function getUser(username: string): Promise<GitHubUser> {
   console.log('Fetching user data for', username);
-  // console.time('getUser');
+
   const res = await fetch(`https://api.github.com/users/${username}`, {
     headers: { Authorization: `Bearer ${process.env.GH_TOKEN}` },
     next: { revalidate }
   });
-  // console.timeEnd('getUser');
+
   return res.json();
 }
 
 export async function getRepos(username: string) {
   console.log('Fetching repos for', username);
-  // console.time('getRepos');
+
   const res = await fetch(`https://api.github.com/users/${username}/repos`, {
     headers: { Authorization: `Bearer ${process.env.GH_TOKEN}` },
     next: { revalidate: MINUTES_5 }
@@ -103,7 +103,7 @@ export async function getRepos(username: string) {
     console.error('GitHub API returned an error.', res.status, res.statusText);
     return [];
   }
-  // console.timeEnd('getRepos');
+
   return res.json();
 }
 
@@ -183,31 +183,31 @@ export const getNextjsLatestRelease = cache(async (): Promise<NextjsRelease> => 
   };
 }, HOURS_12);
 
-export const getRepositoryPackageJson = cache(async (username: string, reponame: string): Promise<Record<string, any>> => {
-  const res = await fetch('https://api.github.com/graphql', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${process.env.GH_TOKEN}` },
-    body: JSON.stringify({
-      query: `{
-        repository(name: "${reponame}", owner: "${username}") {
-          object(expression: "HEAD:package.json") {
-            ... on Blob {
-              text
-            }
-          }
-        }
-      }`
-    }),
-  });
-  const response = await res.json();
-  try {
-    const packageJson = JSON.parse(response.data.repository.object.text);
-    return packageJson;
-  } catch (error) {
-    console.error('Error parsing package.json', error);
-    return {};
-  }
-});
+// export const getRepositoryPackageJson = cache(async (username: string, reponame: string): Promise<Record<string, any>> => {
+//   const res = await fetch('https://api.github.com/graphql', {
+//     method: 'POST',
+//     headers: { Authorization: `Bearer ${process.env.GH_TOKEN}` },
+//     body: JSON.stringify({
+//       query: `{
+//         repository(name: "${reponame}", owner: "${username}") {
+//           object(expression: "HEAD:package.json") {
+//             ... on Blob {
+//               text
+//             }
+//           }
+//         }
+//       }`
+//     }),
+//   });
+//   const response = await res.json();
+//   try {
+//     const packageJson = JSON.parse(response.data.repository.object.text);
+//     return packageJson;
+//   } catch (error) {
+//     console.error('Error parsing package.json', error);
+//     return {};
+//   }
+// });
 
 export const getRecentUserActivity = cache(
   async (username: string): Promise<GitHubEvent[]> => {
@@ -223,7 +223,7 @@ export const getRecentUserActivity = cache(
     }
     return response;
   });
-  
+
 export const getTrafficPageViews = async (username: string, reponame: string): Promise<PageViews> => {
   const res = await fetch(`https://api.github.com/repos/${username}/${reponame}/traffic/views`, {
     headers: { Authorization: `Bearer ${process.env.GH_TOKEN}` },
@@ -260,37 +260,37 @@ export const getDependabotAlerts = cache(async (username: string, reponame: stri
   return openAlertsBySeverity;
 }, HOURS_12);
 
-export async function checkAppJsxExistence(repoOwner: string, repoName: string): Promise<RouterCheck> {
-  const urlPagesApp = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/pages/_app.jsx`;
-  const urlAppLayout = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/app/layout.jsx`;
+// export async function checkAppJsxExistence(repoOwner: string, repoName: string): Promise<RouterCheck> {
+//   const urlPagesApp = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/pages/_app.jsx`;
+//   const urlAppLayout = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/app/layout.jsx`;
 
-  const res: RouterCheck = {
-    isRouterPages: false,
-    isRouterApp: false,
-  };
+//   const res: RouterCheck = {
+//     isRouterPages: false,
+//     isRouterApp: false,
+//   };
 
-  try {
-    const [isPagesRes, isAppLayoutRes] = await Promise.all([
-      fetch(urlPagesApp, {
-        headers: { Authorization: `Bearer ${process.env.GH_TOKEN}` },
-        next: { revalidate: HOURS_12 }
-      }),
-      fetch(urlAppLayout, {
-        headers: { Authorization: `Bearer ${process.env.GH_TOKEN}` },
-        next: { revalidate: HOURS_12 }
-      }),
-    ]);
+//   try {
+//     const [isPagesRes, isAppLayoutRes] = await Promise.all([
+//       fetch(urlPagesApp, {
+//         headers: { Authorization: `Bearer ${process.env.GH_TOKEN}` },
+//         next: { revalidate: HOURS_12 }
+//       }),
+//       fetch(urlAppLayout, {
+//         headers: { Authorization: `Bearer ${process.env.GH_TOKEN}` },
+//         next: { revalidate: HOURS_12 }
+//       }),
+//     ]);
 
-    if (isPagesRes.status === 200) {
-      res.isRouterPages = true;
-    }
+//     if (isPagesRes.status === 200) {
+//       res.isRouterPages = true;
+//     }
 
-    if (isAppLayoutRes.status === 200) {
-      res.isRouterApp = true;
-    }
-  } catch (error) {
-    console.error(`Error checking _app.jsx existence in ${repoName}: ${(error as Error).message}`);
-  }
+//     if (isAppLayoutRes.status === 200) {
+//       res.isRouterApp = true;
+//     }
+//   } catch (error) {
+//     console.error(`Error checking _app.jsx existence in ${repoName}: ${(error as Error).message}`);
+//   }
 
-  return res;
-}
+//   return res;
+// }

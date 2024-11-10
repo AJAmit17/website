@@ -6,6 +6,7 @@ import React, { ReactNode } from "react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import BottomDock from "@/components/FinalDock";
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { ThemeProvider } from "@/components/theme-provider";
 
 const username = process.env.GITHUB_USERNAME || data.githubUsername;
 const displayName = username;

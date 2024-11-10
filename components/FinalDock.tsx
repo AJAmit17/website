@@ -58,17 +58,6 @@ export default function BottomDock() {
                             </Tooltip>
                         </DockIcon>
                     ))}
-                {/* <Separator orientation="vertical" className="h-full py-2 animate-fade-in-up" />
-                <DockIcon className="animate-bounce-in">
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <p className="text-white">Mode Toggle</p>
-                        </TooltipTrigger>
-                        <TooltipContent className="bg-zinc-800 text-white border border-zinc-700 rounded-md shadow-lg">
-                            <p>Theme</p>
-                        </TooltipContent>
-                    </Tooltip>
-                </DockIcon> */}
             </Dock>
         </div>
     );

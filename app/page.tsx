@@ -5,11 +5,10 @@ import { Metadata } from "next";
 import { RecentActivity } from "@/components/recentActivity";
 import { getUser } from "@/lib/data";
 
-// Define metadata for the page
 export const metadata: Metadata = {
     title: "Amit Acharya - Personal Portfolio",
     description: "Professional portfolio of Amit Acharya, featuring projects and contact information. Explore my work and get in touch.",
-    keywords: ["Amit Acharya", "Portfolio", "Developer", "Projects","AJ Amit", "AJAmit17","Amit Jagadeesh Acharya","Amit Achari","Amit Jagadeesh Achari","Achari"],
+    keywords: ["Amit Acharya", "Portfolio", "Developer", "Projects", "AJ Amit", "AJAmit17", "Amit Jagadeesh Acharya", "Amit Achari", "Amit Jagadeesh Achari", "Achari"],
     authors: [{ name: "Amit Acharya" }],
     openGraph: {
         title: "Amit Acharya - Personal Portfolio",
@@ -48,6 +47,7 @@ export const metadata: Metadata = {
 const navigation = [
     { name: "Projects", href: "/projects" },
     { name: "Contact", href: "/contact" },
+    { name: "Skills", href: "/skills" },
 ];
 
 export default function Home() {

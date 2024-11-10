@@ -5,11 +5,17 @@ import {
 	useSpring,
 } from "framer-motion";
 
-export const Card = ({ children }) => {
+import { ReactNode } from "react";
+
+interface CardProps {
+	children: ReactNode;
+}
+
+export const Card = ({ children }: CardProps) => {
 	const mouseX = useSpring(0, { stiffness: 500, damping: 100 });
 	const mouseY = useSpring(0, { stiffness: 500, damping: 100 });
 
-	function onMouseMove({ currentTarget, clientX, clientY }) {
+	function onMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent<HTMLDivElement>) {
 		const { left, top } = currentTarget.getBoundingClientRect();
 		mouseX.set(clientX - left);
 		mouseY.set(clientY - top);

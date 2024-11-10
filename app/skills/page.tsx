@@ -1,110 +1,316 @@
-"use client"
+import { Navigation } from '@/components/nav';
+import { Card } from '@/components/card';
+import { Separator } from '@/components/ui/separator';
+import {
+  Code2,
+  Database,
+  Smartphone,
+  Globe,
+  Server,
+  Cloud,
+  Shield,
+  Cpu,
+  // GitBranch,
+  Palette,
+  // LineChart
+} from 'lucide-react';
+import { Metadata } from 'next';
 
-import React, { useState } from "react"
-import { motion } from "framer-motion"
-import { IconBrandPython, IconBrandJavascript, IconBrandReact, IconBrandNextjs, IconBrandTailwind, IconBrandFigma, IconBrandGit, IconDatabase, IconMathFunction, IconChartBar, IconBrain } from "@tabler/icons-react"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/card"
-
-const skills = [
-  {
-    title: "Web Development",
-    description: "Proficient in creating responsive and interactive web applications using modern frameworks and libraries.",
-    icons: [
-      { icon: IconBrandJavascript, name: "JavaScript" },
-      { icon: IconBrandReact, name: "React" },
-      { icon: IconBrandNextjs, name: "Next.js" },
-      { icon: IconBrandTailwind, name: "Tailwind CSS" },
-    ],
-    projects: [
-      { name: "E-commerce Platform", description: "Built a full-stack e-commerce solution with Next.js and Stripe integration." },
-      { name: "Portfolio Website", description: "Designed and developed a responsive portfolio site using React and Framer Motion." },
+export const metadata: Metadata = {
+  title: 'Amit Acharya | Technical Skills | Full-Stack Developer Portfolio',
+  description: 'Amit Acharya is a Full-Stack Developer with expertise in Web & Mobile Development. Explore his technical skills and experience.',
+  keywords: [
+    'Full Stack Development',
+    'Web Development',
+    'Mobile Development',
+    'Frontend Development',
+    'Backend Development',
+    'DevOps',
+    'Technical Skills',
+    'Software Engineering',
+  ],
+  openGraph: {
+    title: 'Amit Acharya | Technical Skills | Full-Stack Developer Portfolio',
+    description: 'Amit Acharya is a Full-Stack Developer with expertise in Web & Mobile Development. Explore his technical skills and experience.',
+    type: 'website',
+    url: 'https://amit-acharya.live/skills',
+    images: [
+      {
+        url: 'https://your-domain.com/og-skills.png',
+        width: 1200,
+        height: 630,
+        alt: 'Technical Skills Overview',
+      },
     ],
   },
-  {
-    title: "Data Science",
-    description: "Experienced in data analysis, machine learning, and statistical modeling to derive insights from complex datasets.",
-    icons: [
-      { icon: IconBrandPython, name: "Python" },
-      { icon: IconMathFunction, name: "NumPy" },
-      { icon: IconChartBar, name: "Pandas" },
-      { icon: IconBrain, name: "Scikit-learn" },
-    ],
-    projects: [
-      { name: "Predictive Analytics Model", description: "Developed a machine learning model to predict customer churn for a telecom company." },
-      { name: "Data Visualization Dashboard", description: "Created an interactive dashboard for visualizing COVID-19 data trends using Plotly and Dash." },
-    ],
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Amit Acharya | Technical Skills | Full-Stack Developer Portfolio',
+    description: 'Amit Acharya is a Full-Stack Developer with expertise in Web & Mobile Development. Explore his technical skills and experience.',
+    // images: ['https://your-domain.com/og-skills.png'],
   },
-  {
-    title: "Tools & Technologies",
-    description: "Proficient with various tools and technologies that enhance productivity and collaboration in development projects.",
-    icons: [
-      { icon: IconBrandGit, name: "Git" },
-      { icon: IconBrandFigma, name: "Figma" },
-      { icon: IconDatabase, name: "SQL" },
-    ],
-    projects: [
-      { name: "CI/CD Pipeline", description: "Implemented a robust CI/CD pipeline using GitHub Actions for automated testing and deployment." },
-      { name: "Database Optimization", description: "Optimized database queries and schema design for a high-traffic web application, improving performance by 40%." },
-    ],
+  alternates: {
+    canonical: 'https://amit-acharya.live/skills',
   },
-]
+};
 
-export default function SimplifiedSkillSetShowcase() {
-  const [selectedSkill, setSelectedSkill] = useState(null)
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Person',
+    knowsAbout: [
+      'Web Development',
+      'Mobile Development',
+      'Frontend Development',
+      'Backend Development',
+      'DevOps',
+      'Database Management',
+      'UI/UX Design',
+    ],
+    skills: [
+      'React.js',
+      'Next.js',
+      'Node.js',
+      'TypeScript',
+      'React Native',
+      'AWS',
+      'Docker',
+    ],
+  },
+};
+
+export default function SkillsPage() {
+  const skillCategories = [
+    {
+      title: "Frontend Development",
+      icon: <Globe className="w-6 h-6" />,
+      skills: [
+        {
+          name: "Core Technologies",
+          items: ["HTML5", "CSS3", "JavaScript (ES6+)", "TypeScript"]
+        },
+        {
+          name: "Frameworks & Libraries",
+          items: ["React.js", "Next.js", "Vue.js", "Redux", "TanStack Query"]
+        },
+        {
+          name: "Styling",
+          items: ["Tailwind CSS", "Styled Components", "SASS/SCSS", "Material-UI", "Shadcn UI"]
+        }
+      ]
+    },
+    {
+      title: "Mobile Development",
+      icon: <Smartphone className="w-6 h-6" />,
+      skills: [
+        {
+          name: "React Native",
+          items: ["Core Components", "Navigation", "Hooks", "Animations"]
+        },
+        {
+          name: "Mobile UI",
+          items: ["Native Base", "React Native Paper", "Custom Components"]
+        },
+        {
+          name: "Platform Specific",
+          items: ["iOS Development", "Android Development", "Responsive Design"]
+        }
+      ]
+    },
+    {
+      title: "Backend Development",
+      icon: <Server className="w-6 h-6" />,
+      skills: [
+        {
+          name: "Languages & Frameworks",
+          items: ["Node.js", "Express.js", "Python", "Django", "FastAPI"]
+        },
+        {
+          name: "API Development",
+          items: ["RESTful APIs", "GraphQL", "WebSockets", "API Security"]
+        },
+        {
+          name: "Authentication",
+          items: ["JWT", "OAuth", "Session Management", "Passport.js"]
+        }
+      ]
+    },
+    {
+      title: "Database & Storage",
+      icon: <Database className="w-6 h-6" />,
+      skills: [
+        {
+          name: "SQL Databases",
+          items: ["PostgreSQL", "MySQL", "SQLite"]
+        },
+        {
+          name: "NoSQL Databases",
+          items: ["MongoDB", "Firebase", "Redis"]
+        },
+        {
+          name: "ORM & Query Builders",
+          items: ["Prisma", "Sequelize", "TypeORM"]
+        }
+      ]
+    },
+    {
+      title: "DevOps & Deployment",
+      icon: <Cloud className="w-6 h-6" />,
+      skills: [
+        {
+          name: "Cloud Platforms",
+          items: ["AWS", "Google Cloud", "Vercel", "Heroku"]
+        },
+        {
+          name: "Containerization",
+          items: ["Docker", "Kubernetes", "Container Orchestration"]
+        },
+        {
+          name: "CI/CD",
+          items: ["GitHub Actions", "Jenkins", "CircleCI"]
+        }
+      ]
+    },
+    {
+      title: "Testing & Quality",
+      icon: <Shield className="w-6 h-6" />,
+      skills: [
+        {
+          name: "Testing Frameworks",
+          items: ["Jest", "React Testing Library", "Cypress", "Playwright"]
+        },
+        {
+          name: "Testing Types",
+          items: ["Unit Testing", "Integration Testing", "E2E Testing"]
+        },
+        {
+          name: "Quality Tools",
+          items: ["ESLint", "Prettier", "TypeScript", "Husky"]
+        }
+      ]
+    },
+    {
+      title: "Development Tools",
+      icon: <Code2 className="w-6 h-6" />,
+      skills: [
+        {
+          name: "Version Control",
+          items: ["Git", "GitHub", "GitLab", "Bitbucket"]
+        },
+        {
+          name: "Code Editors",
+          items: ["VS Code", "WebStorm", "Sublime Text"]
+        },
+        {
+          name: "Package Managers",
+          items: ["npm", "yarn", "pnpm"]
+        }
+      ]
+    },
+    {
+      title: "Performance & Optimization",
+      icon: <Cpu className="w-6 h-6" />,
+      skills: [
+        {
+          name: "Web Performance",
+          items: ["Code Splitting", "Lazy Loading", "Caching Strategies"]
+        },
+        {
+          name: "Mobile Performance",
+          items: ["App Size Optimization", "Memory Management", "Battery Efficiency"]
+        },
+        {
+          name: "SEO",
+          items: ["Meta Tags", "Semantic HTML", "Open Graph Protocol"]
+        }
+      ]
+    },
+    {
+      title: "UI/UX & Design",
+      icon: <Palette className="w-6 h-6" />,
+      skills: [
+        {
+          name: "Design Tools",
+          items: ["Figma", "Adobe XD", "Sketch"]
+        },
+        {
+          name: "Design Principles",
+          items: ["Responsive Design", "Mobile-First Design", "Accessibility"]
+        },
+        {
+          name: "Animation",
+          items: ["Framer Motion", "React Spring", "CSS Animations"]
+        }
+      ]
+    }
+  ];
 
   return (
-    <div className="min-h-screen bg-black text-white p-8">
-      <header className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">My Skill Set</h1>
-        <p className="text-xl text-gray-400">Bridging Web Technologies and Data Science</p>
-      </header>
-
-      <div className="space-y-16">
-        {skills.map((skill, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="bg-zinc-900 p-6 rounded-lg"
-          >
-            <h2 className="text-2xl font-bold mb-4">{skill.title}</h2>
-            <p className="text-gray-400 mb-6">{skill.description}</p>
-            <div className="flex flex-wrap gap-4 mb-6">
-              {skill.icons.map((item, iconIndex) => (
-                <div key={iconIndex} className="flex flex-col items-center">
-                  <item.icon className="w-8 h-8 mb-2" />
-                  <span className="text-sm">{item.name}</span>
-                </div>
-              ))}
-            </div>
-            <Button
-              variant="outline"
-              onClick={() => setSelectedSkill(skill)}
-            >
-              View Projects
-            </Button>
-          </motion.div>
-        ))}
-      </div>
-
-      {selectedSkill && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-zinc-900 p-6 rounded-lg max-w-md w-full">
-            <h3 className="text-2xl font-bold mb-4">{selectedSkill.title} Projects</h3>
-            {selectedSkill.projects.map((project, index) => (
-              <Card key={index} className="mb-4 p-4 bg-zinc-800">
-                <h4 className="text-lg font-semibold mb-2">{project.name}</h4>
-                <p className="text-gray-400">{project.description}</p>
-              </Card>
-            ))}
-            <Button onClick={() => setSelectedSkill(null)} className="mt-4">
-              Close
-            </Button>
-          </div>
+    <div className="pb-16 text-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <Navigation />
+      <div className="px-4 pt-16 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-12 md:pt-24 lg:pt-16">
+        <div className="max-w-2xl mx-auto mb-16 text-center">
+          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+            Technical Skills
+          </h1>
+          <p className="mt-6 text-lg leading-8 text-zinc-400">
+            Full-Stack Web & Mobile Development expertise with a focus on modern technologies
+            and best practices.
+          </p>
         </div>
-      )}
+
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {skillCategories.map((category) => (
+            <Card key={category.title}>
+              <div className="p-6 h-full">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-zinc-800">
+                    {category.icon}
+                  </div>
+                  <h2 className="text-xl font-semibold text-zinc-200">
+                    {category.title}
+                  </h2>
+                </div>
+                <div className="space-y-6">
+                  {category.skills.map((skillGroup) => (
+                    <div key={skillGroup.name}>
+                      <h3 className="mb-2 text-sm font-medium text-zinc-400">
+                        {skillGroup.name}
+                      </h3>
+                      <div className="flex flex-wrap gap-2">
+                        {skillGroup.items.map((skill) => (
+                          <span
+                            key={skill}
+                            className="px-3 py-1 text-sm text-zinc-300 bg-zinc-800 rounded-full hover:bg-zinc-700 transition-colors"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+
+        <Separator className="my-16 bg-zinc-800" />
+
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-2xl font-semibold text-zinc-200">
+            Continuous Learning
+          </h2>
+          <p className="mt-4 text-zinc-400">
+            Constantly updating skills and exploring new technologies to stay current with industry trends and best practices.
+          </p>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
