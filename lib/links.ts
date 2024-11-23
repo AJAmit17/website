@@ -6,8 +6,8 @@ export const DATA = {
         { href: "/", icon: HomeIcon, label: "Home" },
     ],
     contact: {
-        email: "hello@example.com",
-        tel: "+123456789",
+        email: "amit.acharya.work@gmail.com",
+        tel: "+916361870184",
         social: {
             GitHub: {
                 name: "GitHub",
