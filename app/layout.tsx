@@ -6,7 +6,7 @@ import React, { ReactNode } from "react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import BottomDock from "@/components/FinalDock";
 import { GoogleAnalytics } from '@next/third-parties/google'
-
+import { Analytics } from "@vercel/analytics/react"
 const username = process.env.GITHUB_USERNAME || data.githubUsername;
 const displayName = username;
 
@@ -63,6 +63,7 @@ export default function RootLayout({
         </TooltipProvider>
       </body>
       <GoogleAnalytics gaId="G-DKQR8CX81M" />
+      <Analytics />
     </html>
   );
 }
